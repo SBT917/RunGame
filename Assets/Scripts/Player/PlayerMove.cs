@@ -6,9 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float moveSpeed; //プレイヤーの移動速度
+    [SerializeField] Vector2 rangeMovableMin; //移動可能範囲の最小値
+    [SerializeField] Vector2 rangeMovableXax; //移動可能範囲の最大値
+
     Vector3 moveDirection; //移動方向
     PlayerInput input; //InputSystem;
-
 
     void Awake()
     {
@@ -30,6 +32,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         Move(moveDirection);
+        ClampPosition();
     }
 
     //移動キーを押したときの処理
@@ -49,5 +52,14 @@ public class PlayerMove : MonoBehaviour
     void Move(Vector3 direction)
     {
         transform.position += direction * moveSpeed * Time.deltaTime;
+    }
+
+    //移動範囲の制限
+    void ClampPosition()
+    {
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, rangeMovableMin.x, rangeMovableXax.x);
+        pos.y = Mathf.Clamp(pos.y, rangeMovableMin.y, rangeMovableXax.y);
+        transform.position = pos;
     }
 }
