@@ -334,8 +334,9 @@ GameObject:
   - component: {fileID: 1454230586}
   - component: {fileID: 1454230585}
   - component: {fileID: 1454230591}
-  - component: {fileID: 1454230589}
   - component: {fileID: 1454230590}
+  - component: {fileID: 1454230589}
+  - component: {fileID: 1454230592}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -441,9 +442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29710dcc737e2c4ea3ed1fb49ce0924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  rangeMovableMin: {x: -3, y: 1}
-  rangeMovableXax: {x: 3, y: 7}
 --- !u!114 &1454230590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +529,7 @@ Rigidbody:
   m_GameObject: {fileID: 1454230584}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -545,7 +543,23 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1454230592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454230584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d33d878f0539d946bb61116e41ae046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  dashSpeed: 15
+  rangeMovableMin: {x: -3, y: 1}
+  rangeMovableMax: {x: 3, y: 7}
