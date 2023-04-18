@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviour, IMoveable, IDashable
     {
         Move(direction);
         ClampPosition();
+
     }
 
     //移動処理
@@ -54,5 +55,4 @@ public class PlayerMove : MonoBehaviour, IMoveable, IDashable
         pos.y = Mathf.Clamp(pos.y, rangeMovableMin.y, rangeMovableMax.y);
         transform.position = pos;
     }
-
 }

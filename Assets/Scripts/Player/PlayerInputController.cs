@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerInputController : MonoBehaviour
 {
     PlayerInput input; //InputSystem;
     IMoveable move;
@@ -37,16 +37,18 @@ public class PlayerController : MonoBehaviour
         move.SetDirection(value);
     }
 
+    //移動キーを離したときの処理
+    void OnMoveStop(InputAction.CallbackContext context)
+    {
+        move.SetDirection(Vector3.zero);
+    }
+
     //ダッシュキーを押したときの処理
     void OnDash(InputAction.CallbackContext context)
     {
         dash.Dash(move.GetDirection());
     }
 
-    //移動キーを離したときの処理
-    void OnMoveStop(InputAction.CallbackContext context)
-    {
-        move.SetDirection(Vector3.zero);
-    }
+
 
 }

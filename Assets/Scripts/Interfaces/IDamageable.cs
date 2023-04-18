@@ -4,5 +4,17 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamage(int damage);
+    /**  
+    <summary>
+    ダメージを受ける処理
+    </summary>
+    */
+    void TakeDamage(float damage);
+
+    /**  
+    <summary>
+    死亡処理
+    </summary>
+    */
+    void Death();
 }

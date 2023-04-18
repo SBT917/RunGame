@@ -4,6 +4,11 @@ using UnityEngine;
 
 public interface IDashable
 {
+    /**  
+    <summary>
+    ダッシュ処理
+    </summary>
+    */
     void Dash(Vector3 direction);
 }
 
