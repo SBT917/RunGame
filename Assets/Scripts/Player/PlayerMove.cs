@@ -18,11 +18,10 @@ public class PlayerMove : MonoBehaviour, IMoveable, IDashable
         TryGetComponent(out rb);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Move(direction);
         ClampPosition();
-
     }
 
     //移動処理
