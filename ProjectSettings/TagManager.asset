@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player Attack
+  - Normal Notes
+  - Solid Notes
+  - Damage Notes
   - 
   - 
   - 

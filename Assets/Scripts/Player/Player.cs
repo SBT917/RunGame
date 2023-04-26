@@ -10,14 +10,4 @@ public class Player : Character
         base.Death();
         onPlayerDeath?.Invoke();
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        IDamageable damageable;
-        if (other.TryGetComponent(out damageable))
-        {
-            damageable.TakeDamage(1);
-        }
-
-    }
 }

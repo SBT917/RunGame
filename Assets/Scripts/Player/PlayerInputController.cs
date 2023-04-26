@@ -8,12 +8,14 @@ public class PlayerInputController : MonoBehaviour
     PlayerInput input; //InputSystem;
     IMoveable move;
     IDashable dash;
+    IAttackable attack;
 
     void Awake()
     {
         TryGetComponent(out input);
         TryGetComponent(out move);
         TryGetComponent(out dash);
+        TryGetComponent(out attack);
     }
 
     void OnEnable()
@@ -21,6 +23,7 @@ public class PlayerInputController : MonoBehaviour
         input.actions["Move"].performed += OnMove;
         input.actions["Move"].canceled += OnMoveStop;
         input.actions["Dash"].started += OnDash;
+        input.actions["Attack"].started += OnAttack;
     }
 
     void OnDisable()
@@ -28,6 +31,7 @@ public class PlayerInputController : MonoBehaviour
         input.actions["Move"].performed -= OnMove;
         input.actions["Move"].canceled -= OnMoveStop;
         input.actions["Dash"].started -= OnDash;
+        input.actions["Attack"].started -= OnAttack;
     }
 
     //移動キーを押したときの処理
@@ -49,6 +53,10 @@ public class PlayerInputController : MonoBehaviour
         dash.Dash(move.GetDirection());
     }
 
-
+    //攻撃キーを押したときの処理
+    void OnAttack(InputAction.CallbackContext context)
+    {
+        attack.Attack();
+    }
 
 }
