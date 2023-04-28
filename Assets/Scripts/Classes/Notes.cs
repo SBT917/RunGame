@@ -6,17 +6,25 @@ public class Notes : Character, IMoveable
     [SerializeField] protected NotesStatus notesStatus;
 
     Vector3 direction; //移動する方向
+    protected int defaultScore; //ノーツのスコア
     public static event Action<int> onNotesBreak; //ノーツが壊れた時に呼び出されるイベント
 
     protected override void Awake()
     {
         base.Awake();
         direction = new Vector3(0, 0, -1);
+        defaultScore = notesStatus.score;
     }
 
     void Update()
     {
         Move(direction);
+    }
+
+    //カメラ外に出たら消滅させる
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 
     public void Move(Vector3 direction)
@@ -43,7 +51,7 @@ public class Notes : Character, IMoveable
     public override void Death()
     {
         base.Death();
-        onNotesBreak?.Invoke(notesStatus.score);
+        onNotesBreak?.Invoke(defaultScore);
     }
 
 }
