@@ -5,9 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class SongData
 {
-    public string name;
-    public float bpm;
-    public float offset;
+    public string name; //曲名
+    public float bpm; //BPM
+    public float offset; //オフセット
+    public float speed; //ノーツの速度
     public NotesData[] notesData;
 
 }
@@ -15,6 +16,6 @@ public class SongData
 [System.Serializable]
 public class NotesData
 {
-    public float beat;
-    public int[] place;
+    public float beat; //次のノーツが到達するまでの拍数
+    public int[] place; //ノーツの配置
 }
