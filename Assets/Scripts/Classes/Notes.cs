@@ -5,7 +5,6 @@ public class Notes : Character, IMoveable
 {
     [SerializeField] protected NotesStatus notesStatus;
 
-    public static float notesSpeedRadix = 100; //ノーツの速度の基準値
     public float speed; //ノーツの速度
     Vector3 direction; //移動する方向
     protected int defaultScore; //ノーツのスコア
@@ -18,7 +17,7 @@ public class Notes : Character, IMoveable
         defaultScore = notesStatus.score;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Move(direction);
     }
@@ -32,7 +31,7 @@ public class Notes : Character, IMoveable
     //移動処理(進行方向*基数*速度*デルタタイム)
     public void Move(Vector3 direction)
     {
-        transform.position += direction * notesSpeedRadix * speed * Time.deltaTime;
+        transform.position += direction * CommonGameParam.NOTES_BASIS_SPEED * speed * Time.deltaTime;
     }
 
     public void SetDirection(Vector3 direction)
@@ -54,6 +53,7 @@ public class Notes : Character, IMoveable
     public override void Death()
     {
         base.Death();
+        Debug.Log(Time.time + "秒でノーツが壊れました。");
         onNotesBreak?.Invoke(defaultScore);
     }
 

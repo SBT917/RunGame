@@ -14,8 +14,7 @@ public class PlayerAttack : MonoBehaviour, IAttackable
     private void OnTriggerEnter(Collider other)
     {
         IDamageable damageable;
-        if (other.TryGetComponent(out damageable))
-        {
+        if (other.TryGetComponent(out damageable)) {
             damageable.TakeDamage(1);
         }
     }

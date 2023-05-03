@@ -6,12 +6,11 @@ public class DamageNotes : Notes
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
+        if (other.CompareTag("Player")) {
             IDamageable damage;
-            if (other.TryGetComponent(out damage))
-            {
+            if (other.TryGetComponent(out damage)) {
                 damage.TakeDamage(1);
+                Destroy(gameObject);
             }
         }
 
