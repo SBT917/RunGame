@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class MusicPlayer : MonoBehaviour
 {
-    AudioSource audioSource; //オーディオソース
+    AudioSource audioSource;
 
     void Start()
     {

@@ -19,4 +19,5 @@ public class NotesData
 {
     public float beat; //次のノーツが到達するまでの拍数
     public int[] place; //ノーツの配置
+    public int lineEnd; //ラインノーツの終点
 }

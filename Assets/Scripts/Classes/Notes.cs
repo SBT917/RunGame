@@ -53,7 +53,6 @@ public class Notes : Character, IMoveable
     public override void Death()
     {
         base.Death();
-        Debug.Log(Time.time + "秒でノーツが壊れました。");
         onNotesBreak?.Invoke(defaultScore);
     }
 
