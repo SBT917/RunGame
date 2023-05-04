@@ -1,7 +1,7 @@
 {
     "name": "GhostShooter!!!",
-    "bpm": 120,
-    "offset": 0,
+    "bpm": 150,
+    "offset": 180,
     "speed" : 1,
     "source": "GhostShooter!!!.mp3",
     "notesData":[

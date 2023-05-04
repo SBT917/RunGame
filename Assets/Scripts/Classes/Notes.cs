@@ -31,7 +31,7 @@ public class Notes : Character, IMoveable
     //移動処理(進行方向*基数*速度*デルタタイム)
     public void Move(Vector3 direction)
     {
-        transform.position += direction * CommonGameParam.NOTES_BASIS_SPEED * speed * Time.deltaTime;
+        transform.position += direction * CommonGameParam.BASIS_NOTES_SPEED * speed * Time.deltaTime;
     }
 
     public void SetDirection(Vector3 direction)

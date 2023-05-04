@@ -23,7 +23,7 @@ public class NotesGenerator : MonoBehaviour
     {
         float offset = BASIS_OFFSET + musicData.offset; //オフセット
         float spacing = (-100 + ((100 + offset) * musicData.speed)); //ノーツの間隔(初期値はオフセットを設定し、speedの値によって到達する時間に偏りが出ないようにする)
-        //マジックナンバーの100はプレイヤーのz軸とbasisPositionのz軸の距離を表す
+        //マジックナンバーの100はプレイヤーのz軸とbasisPositionのz軸の距離
 
         for (int i = 0; i < notesDatas.Length; ++i) {
             NotesData nd = notesDatas[i];
@@ -42,7 +42,7 @@ public class NotesGenerator : MonoBehaviour
                 }
             }
             //次のノーツまでの間隔を計算
-            spacing = n.transform.position.z + ((60 / musicData.bpm) / (nd.beat / 4)) * (CommonGameParam.NOTES_BASIS_SPEED * musicData.speed);
+            spacing = n.transform.position.z + ((60 / musicData.bpm) / (nd.beat / 4)) * (CommonGameParam.BASIS_NOTES_SPEED * musicData.speed);
 
         }
 
