@@ -5,7 +5,8 @@ public class Notes : Character, IMoveable
 {
     [SerializeField] protected NotesStatus notesStatus;
 
-    public float speed; //ノーツの速度
+    protected float speed; //ノーツの速度
+    protected float beat; //ノーツ長さ
     Vector3 direction; //移動する方向
     protected int defaultScore; //ノーツのスコア
     public static event Action<int> onNotesBreak; //ノーツが壊れた時に呼び出されるイベント
@@ -28,8 +29,21 @@ public class Notes : Character, IMoveable
         Destroy(gameObject);
     }
 
+
+    //ノーツの初期化
+    public virtual void Init(int glidIndex, MusicData md, NotesData nd, float spacing)
+    {
+        this.speed = md.speed;
+        this.beat = nd.beat;
+
+        Vector3 basisPosition = CommonGameParam.BASIS_NOTES_POSITION;
+        float gridSize = CommonGameParam.GRID_SIZE;
+
+        transform.position = basisPosition + new Vector3((glidIndex % 3) * gridSize, (glidIndex / 3) * -gridSize, spacing);
+    }
+
     //移動処理(進行方向*基数*速度*デルタタイム)
-    public void Move(Vector3 direction)
+    public virtual void Move(Vector3 direction)
     {
         transform.position += direction * CommonGameParam.BASIS_NOTES_SPEED * speed * Time.deltaTime;
     }

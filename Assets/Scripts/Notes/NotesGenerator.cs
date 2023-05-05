@@ -22,30 +22,22 @@ public class NotesGenerator : MonoBehaviour
     //ノーツの生成
     void Generate(NotesData[] notesDatas)
     {
-        float spacing = (-100 + ((100 + offset) * musicData.speed)); //ノーツの間隔(初期値はオフセットを設定し、speedの値によって到達する時間に偏りが出ないようにする)
+        //ノーツの間隔(初期値はオフセットを設定し、speedの値によって到達する時間に偏りが出ないようにする)
+        float spacing = (CommonGameParam.PLAYER_POSITION_Z + ((-CommonGameParam.PLAYER_POSITION_Z + offset) * musicData.speed));
 
         for (int i = 0; i < notesDatas.Length; ++i) {
-            NotesData nd = notesDatas[i];
-            if (nd.beat == 0) nd.beat = notesDatas[i - 1].beat; //beatが0の場合は前のノーツのbeatを引き継ぐ
+            NotesData notesData = notesDatas[i];
+            if (notesData.beat == 0) notesData.beat = notesDatas[i - 1].beat; //beatが0の場合は前のノーツのbeatを引き継ぐ
 
             var nc = Instantiate(notesContainer, new Vector3(0, 0, spacing), Quaternion.identity, transform); //ノーツの格納場所を生成
-            for (int j = 0; j < nd.place.Length; ++j) {
-                if (nd.place[j] == 0) continue; //placeが0の場合はノーツを生成しない(空白)
-                Notes n = Instantiate(noteses[nd.place[j] - 1], nc.transform);
-                nc.SetNotes(j, n);
-                n.speed = musicData.speed;
-
-                //ラインノーツの場合は終点を設定
-                if (n.TryGetComponent(out LineNotes line)) {
-                    Vector3 basisPosition = new Vector3(-3f, 7.5f, 0);
-                    float end = ((60 / musicData.bpm) / (nd.beat / 4)) * notesSpeed;
-                    Vector3 endPoint = basisPosition + new Vector3((nd.lineEnd % 3) * CommonGameParam.GRID_SIZE, (nd.lineEnd / 3) * -CommonGameParam.GRID_SIZE, end);
-                    line.SetEndPoint(endPoint);
-                }
+            for (int j = 0; j < notesData.place.Length; ++j) {
+                if (notesData.place[j] == 0) continue; //placeが0の場合はノーツを生成しない(空白)
+                Notes n = Instantiate(noteses[notesData.place[j] - 1]);
+                n.Init(j, musicData, notesData, spacing);
             }
 
             //次のノーツまでの間隔を計算
-            spacing = nc.transform.position.z + ((60 / musicData.bpm) / (nd.beat / 4)) * notesSpeed;
+            spacing = nc.transform.position.z + ((60 / musicData.bpm) / (notesData.beat / 4)) * notesSpeed;
         }
     }
 }

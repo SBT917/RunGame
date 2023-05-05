@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 [System.Serializable]
 public class MusicData
 {
@@ -19,5 +15,7 @@ public class NotesData
 {
     public float beat; //次のノーツが到達するまでの拍数
     public int[] place; //ノーツの配置
+    public int lineLength; //ラインノーツの長さ
     public int lineEnd; //ラインノーツの終点
+
 }
