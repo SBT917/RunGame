@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4455445209678667897}
   - component: {fileID: 4011848918558133413}
   - component: {fileID: 2414370271682361851}
-  - component: {fileID: 7071549883776501674}
   m_Layer: 7
   m_Name: LineNotes
   m_TagString: Untagged
@@ -153,26 +152,3 @@ MonoBehaviour:
   defaultStats: {fileID: 11400000, guid: de46ea2a14b036a45a9113b51b09d0e2, type: 2}
   health: 0
   notesStatus: {fileID: 11400000, guid: 6261b78fbfa8a1442a4e4982bc020d77, type: 2}
---- !u!136 &7071549883776501674
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1965133066023365826}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

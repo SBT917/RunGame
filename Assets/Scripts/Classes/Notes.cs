@@ -39,10 +39,11 @@ public class Notes : Character, IMoveable
         Vector3 basisPosition = CommonGameParam.BASIS_NOTES_POSITION;
         float gridSize = CommonGameParam.GRID_SIZE;
 
+        //マスに合わせてノーツを配置
         transform.position = basisPosition + new Vector3((glidIndex % 3) * gridSize, (glidIndex / 3) * -gridSize, spacing);
     }
 
-    //移動処理(進行方向*基数*速度*デルタタイム)
+    //移動処理(進行方向*基本速度*速度*デルタタイム)
     public virtual void Move(Vector3 direction)
     {
         transform.position += direction * CommonGameParam.BASIS_NOTES_SPEED * speed * Time.deltaTime;

@@ -32,7 +32,7 @@ public class NotesGenerator : MonoBehaviour
             var nc = Instantiate(notesContainer, new Vector3(0, 0, spacing), Quaternion.identity, transform); //ノーツの格納場所を生成
             for (int j = 0; j < notesData.place.Length; ++j) {
                 if (notesData.place[j] == 0) continue; //placeが0の場合はノーツを生成しない(空白)
-                Notes n = Instantiate(noteses[notesData.place[j] - 1]);
+                Notes n = Instantiate(noteses[notesData.place[j] - 1], nc.transform);
                 n.Init(j, musicData, notesData, spacing);
             }
 
