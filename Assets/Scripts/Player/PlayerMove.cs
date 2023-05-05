@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour, IMoveable, IDashable
+public class PlayerMove : MonoBehaviour, IMoveable
 {
     [SerializeField] float moveSpeed; //プレイヤーの移動速度
     [SerializeField] float dashSpeed; //プレイヤーのダッシュ速度
@@ -38,12 +38,6 @@ public class PlayerMove : MonoBehaviour, IMoveable, IDashable
     public Vector3 GetDirection()
     {
         return direction;
-    }
-
-    //ダッシュ処理
-    public void Dash(Vector3 direction)
-    {
-        rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
     }
 
     //移動範囲の制限

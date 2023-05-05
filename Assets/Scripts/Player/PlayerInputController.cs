@@ -22,7 +22,6 @@ public class PlayerInputController : MonoBehaviour
     {
         input.actions["Move"].performed += OnMove;
         input.actions["Move"].canceled += OnMoveStop;
-        input.actions["Dash"].started += OnDash;
         input.actions["Attack"].started += OnAttack;
     }
 
@@ -30,7 +29,6 @@ public class PlayerInputController : MonoBehaviour
     {
         input.actions["Move"].performed -= OnMove;
         input.actions["Move"].canceled -= OnMoveStop;
-        input.actions["Dash"].started -= OnDash;
         input.actions["Attack"].started -= OnAttack;
     }
 
@@ -45,12 +43,6 @@ public class PlayerInputController : MonoBehaviour
     void OnMoveStop(InputAction.CallbackContext context)
     {
         move.SetDirection(Vector3.zero);
-    }
-
-    //ダッシュキーを押したときの処理
-    void OnDash(InputAction.CallbackContext context)
-    {
-        dash.Dash(move.GetDirection());
     }
 
     //攻撃キーを押したときの処理

@@ -11,12 +11,10 @@ public class PlayerAttack : MonoBehaviour, IAttackable
         attackCollider.enabled = false;
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         IDamageable damageable;
-        if (other.TryGetComponent(out damageable))
-        {
+        if (other.TryGetComponent(out damageable)) {
             damageable.TakeDamage(1);
         }
     }
@@ -26,10 +24,11 @@ public class PlayerAttack : MonoBehaviour, IAttackable
         StartCoroutine(AttackCo());
     }
 
+    //攻撃判定をon/offするコルーチン
     IEnumerator AttackCo()
     {
         attackCollider.enabled = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f); //攻撃判定がonになった0.1秒後にoffにする
         attackCollider.enabled = false;
     }
 }

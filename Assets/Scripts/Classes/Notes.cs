@@ -5,23 +5,48 @@ public class Notes : Character, IMoveable
 {
     [SerializeField] protected NotesStatus notesStatus;
 
+    protected float speed; //ノーツの速度
+    protected float beat; //ノーツ長さ
     Vector3 direction; //移動する方向
+    protected int defaultScore; //ノーツのスコア
     public static event Action<int> onNotesBreak; //ノーツが壊れた時に呼び出されるイベント
 
     protected override void Awake()
     {
         base.Awake();
         direction = new Vector3(0, 0, -1);
+        defaultScore = notesStatus.score;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Move(direction);
     }
 
-    public void Move(Vector3 direction)
+    //カメラ外に出たら消滅させる
+    void OnBecameInvisible()
     {
-        transform.position += direction * 10 * Time.deltaTime;
+        Destroy(gameObject);
+    }
+
+
+    //ノーツの初期化
+    public virtual void Init(int glidIndex, MusicData md, NotesData nd, float spacing)
+    {
+        this.speed = md.speed;
+        this.beat = nd.beat;
+
+        Vector3 basisPosition = CommonGameParam.BASIS_NOTES_POSITION;
+        float gridSize = CommonGameParam.GRID_SIZE;
+
+        //マスに合わせてノーツを配置
+        transform.position = basisPosition + new Vector3((glidIndex % 3) * gridSize, (glidIndex / 3) * -gridSize, spacing);
+    }
+
+    //移動処理(進行方向*基本速度*速度*デルタタイム)
+    public virtual void Move(Vector3 direction)
+    {
+        transform.position += direction * CommonGameParam.BASIS_NOTES_SPEED * speed * Time.deltaTime;
     }
 
     public void SetDirection(Vector3 direction)
@@ -43,7 +68,7 @@ public class Notes : Character, IMoveable
     public override void Death()
     {
         base.Death();
-        onNotesBreak?.Invoke(notesStatus.score);
+        onNotesBreak?.Invoke(defaultScore);
     }
 
 }
